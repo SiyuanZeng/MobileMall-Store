@@ -1,0 +1,36 @@
+#review-table {
+	border-spacing: 0px; /* take out spaces between cells */
+}
+
+#review-table tr {
+	
+}
+
+#review-table td{
+    border-top: thin solid black;
+	width: 300px;
+	height: 30px;
+}
+
+.review-name
+{
+    text-decoration: underline;
+}
+.review-time
+{
+	font-size: 9px;
+}
+.review-title
+{
+    font-weight: bold;
+
+}
+.review-description
+{
+	
+}
+.review-helpful
+{
+	font-size: 8px;
+		
+}

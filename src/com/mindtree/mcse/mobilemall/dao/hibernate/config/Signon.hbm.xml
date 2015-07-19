@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	<class name="Signon" table="signon">
+		<id name="username" column="USERNAME">
+			<generator class="foreign">
+				<param name="property">account</param>
+			</generator>
+		</id>
+			
+		<property name="password"
+			      column="PASSWORD"
+			      not-null="true"/>
+		<property name="admin" column="ADMIN" />		
+		
+		<one-to-one name="account" lazy="false"
+					class="com.mindtree.mcse.mobilemall.domain.Account"
+					constrained="true"/>		      		      		
+	</class>
+</hibernate-mapping>

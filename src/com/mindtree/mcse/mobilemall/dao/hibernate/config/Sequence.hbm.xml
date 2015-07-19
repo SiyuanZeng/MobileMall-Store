@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	<class name="Sequence" 
+		table="sequence">
+		<id name="name" column="NAME"
+			unsaved-value="null">
+			<generator class="assigned"/>
+		</id>
+					
+		<property name="seqnum"
+			      column="nextid"
+			      not-null="true"/>				      		      		
+	</class>
+</hibernate-mapping>

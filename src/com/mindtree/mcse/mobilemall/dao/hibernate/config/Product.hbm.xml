@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	<class name="Product" table="product">
+		<id name="productId" column="PRODUCTID" unsaved-value="null">
+			<generator class="assigned"/>
+		</id>
+		<property name="categoryId" column="CATEGORY" not-null="true"/>	
+		<property name="name" column="NAME"/>			      
+		<property name="description" column="DESCN"/>  		
+	</class>
+</hibernate-mapping>

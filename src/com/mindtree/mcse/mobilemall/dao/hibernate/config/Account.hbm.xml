@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	<class name="Account" table="account">
+		<id name="username" column="USERID" unsaved-value="null">
+			<generator class="assigned"/>
+		</id>
+			
+		<property name="email"
+			      column="EMAIL"
+			      not-null="true"/>	
+			      
+		<property name="firstName"
+			      column="FIRSTNAME"
+			      not-null="true"/>			      
+			      
+		<property name="lastName"
+			      column="LASTNAME"
+			      not-null="true"/>	
+
+		<property name="status"
+			      column="STATUS"/>	  
+			      
+		<property name="address1"
+			      column="ADDR1"
+			      not-null="true"/>			      
+			      
+		<property name="address2"
+			      column="ADDR2"/>	  			  			      
+			      
+		<property name="city"
+			      column="CITY"
+			      not-null="true"/>			      
+			      
+		<property name="state"
+			      column="STATE"
+			      not-null="true"/>	
+
+		<property name="zip"
+			      column="ZIP"
+			      not-null="true"/>	
+			      
+		<property name="country"
+			      column="COUNTRY"
+			      not-null="true"/>	
+
+		<property name="phone"
+			      column="PHONE"
+			      not-null="true"/>	      			  
+			      
+		<one-to-one name="signon" 
+					class="com.mindtree.mcse.mobilemall.domain.Signon" 
+					cascade="all"/>
+		
+		<one-to-one name="profile" lazy="false"
+					class="com.mindtree.mcse.mobilemall.domain.Profile" 
+					cascade="all"/>		        				      			            		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	
+	<class name="Profile" table="profile">
+		
+		<id name="username" column="USERID">
+			<generator class="foreign">
+				<param name="property">account</param>
+			</generator>
+		</id>
+			
+		<property name="favoriteCategoryId"
+			      column="FAVCATEGORY"/>
+			      
+		<property name="languagePreference"
+			      column="LANGPREF"
+			      not-null="true"/>
+			      
+		<property name="listOption"
+			      column="MYLISTOPT"/>	
+			      
+		<property name="bannerOption"
+			      column="BANNEROPT"/>	
+			      		
+		<one-to-one name="account"
+					class="com.mindtree.mcse.mobilemall.domain.Account"
+					constrained="true"/>						      				      		      		
+	</class>
+</hibernate-mapping>

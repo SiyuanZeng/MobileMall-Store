@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+	<!-- ========================= GENERAL DEFINITIONS ========================= -->
+
+	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
+	<!-- (in this case, mail and JDBC related properties) -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+
+	<!-- Generic validator for Account objects, to be used for example by the Spring web tier -->
+	<bean id="accountValidator" class="com.mindtree.mcse.mobilemall.web.validators.AccountValidator"/>
+
+	<!-- Generic validator for Order objects, to be used for example by the Spring web tier -->
+	<bean id="orderValidator" class="com.mindtree.mcse.mobilemall.web.validators.OrderValidator"/>
+
+	<bean id="accountService" class="com.mindtree.mcse.mobilemall.service.AccountService">
+		<property name="accountDao" ref="accountDao"/>
+	</bean>
+	
+	<bean id="categoryService" class="com.mindtree.mcse.mobilemall.service.CategoryService">
+		<property name="categoryDao" ref="categoryDao"/>
+	</bean>
+	
+	<bean id="productService" class="com.mindtree.mcse.mobilemall.service.ProductService">
+		<property name="productDao" ref="productDao"/>
+	</bean>
+	
+	<bean id="itemService" class="com.mindtree.mcse.mobilemall.service.ItemService">
+		<property name="itemDao" ref="itemDao"/>
+		<property name="invService" ref="inventoryService"/>
+	</bean>
+	
+	<bean id="itemAndReviewService" class="com.mindtree.mcse.mobilemall.service.ItemAndReviewService">
+		<property name="itemDao" ref="itemDao"/>
+		<property name="reviewDao" ref="reviewDao"/>
+		<property name="invService" ref="inventoryService"/>
+	</bean>
+	
+	<bean id="orderService" class="com.mindtree.mcse.mobilemall.service.OrderService">
+		<property name="itemDao" ref="itemDao"/>
+		<property name="orderDao" ref="orderDao"/>
+	</bean>
+
+</beans>

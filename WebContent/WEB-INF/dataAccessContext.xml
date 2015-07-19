@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<!-- Local Apache Commons DBCP DataSource that refers to a combined database -->
+	<!-- The placeholders are resolved from jdbc.properties through -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	
+	<!-- Hibernate SessionFactory Definition -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.c3p0.min_size">5</prop>
+			    <prop key="hibernate.c3p0.max_size">20</prop>
+			    <prop key="hibernate.c3p0.timeout">300</prop>
+			    <prop key="hibernate.c3p0.max_statements">50</prop>
+			    <prop key="hibernate.c3p0.idle_test_period">3000</prop>
+			</props>
+		</property>
+		
+		<property name="mappingResources">
+			<list>
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Account.hbm.xml</value>	
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Category.hbm.xml</value>
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Item.hbm.xml</value>		
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/LineItem.hbm.xml</value>	
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Order.hbm.xml</value>
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Product.hbm.xml</value>	
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Profile.hbm.xml</value>
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Signon.hbm.xml</value>	
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Inventory.hbm.xml</value>
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Sequence.hbm.xml</value>	
+				<value>com/mindtree/mcse/mobilemall/dao/hibernate/config/Review.hbm.xml</value>	
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Spring Data Access Exception Translator Defintion -->
+	<bean id="jdbcExceptionTranslator" class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator"> 
+		<property name="dataSource"><ref bean="dataSource"/></property> 
+	</bean> 
+
+	<!-- Hibernate Template Defintion -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"> 
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property> 
+		<property name="jdbcExceptionTranslator"><ref bean="jdbcExceptionTranslator"/></property> 
+	</bean> 
+
+	<!-- Hibernate DAO's Defintion -->
+	<bean id="accountDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.AccountDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+	
+	<bean id="categoryDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.CategoryDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+	
+	<bean id="itemDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.ItemDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+	
+	<bean id="reviewDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.ReviewDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+
+	<bean id="orderDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.OrderDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+	
+	<bean id="productDao" class="com.mindtree.mcse.mobilemall.dao.hibernate.ProductDaoHibernateImpl">
+		<property name="hibernateTemplate"><ref bean="hibernateTemplate"/></property> 
+	</bean>	
+</beans>

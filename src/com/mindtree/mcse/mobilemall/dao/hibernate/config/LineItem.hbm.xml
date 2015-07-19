@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.mindtree.mcse.mobilemall.domain">
+	<class name="LineItem" table="lineitem">
+		
+		<composite-id  unsaved-value="any">
+        	<key-property name="orderId" column="ORDERID"/>
+        	<key-property name="lineNumber" column="LINENUM"/>
+		</composite-id>		      
+			      
+		<property name="itemId"
+			      column="ITEMID"
+			      not-null="true"/>	
+
+		<property name="quantity"
+			      column="QUANTITY"
+			      not-null="true"/>	  
+			      
+		<property name="unitPrice"
+			      column="UNITPRICE"
+			      not-null="true"/>	
+	</class>
+</hibernate-mapping>

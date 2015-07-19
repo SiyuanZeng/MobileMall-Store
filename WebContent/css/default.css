@@ -1,0 +1,568 @@
+/* CSS/XHTML RESET */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	background: transparent;
+	font: 16px/18px Arial, Helvetica, sans-serif;
+	color: #2d2d2d;
+}
+html, body {
+	height: 100%;
+}
+
+body {
+	background: url(../images/square-grid.png) repeat #f7f7f7;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+:focus {
+	outline: none;
+}
+
+ins {
+	text-decoration: none;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+table {
+}
+
+h1 {
+	font: bold 14px/14px Arial, Helvetica, sans-serif;
+	height: 14px;
+	color: #2d2d2d;
+	text-transform: uppercase;
+}
+
+p {
+	margin: 16px 0;
+	line-height: 22px;
+	font-style: normal;
+}
+
+a {
+	color: #2d2d2d;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* FRAMEWORK */
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: ##F1F5FF;
+}
+
+#container {
+	min-height: 100%;
+	height: auto !important; 
+	height: 100%; 
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+
+#site {
+	width: 980px;
+	height: auto;
+	position: relative;
+	z-index: 2;
+	margin: auto;
+	padding-bottom: 20px;
+}
+
+#site:after {
+	clear: both;
+	display: block;
+	font: 1px/0px serif;
+	content: ".";
+	height: 0;
+	visibility: hidden; 
+}
+
+#header {
+	width: 980px;
+	height: 110px;
+	position: relative;
+	margin-bottom: 28px;
+}
+
+#logo {
+	width: 350px;
+	height: 82px;
+	position: absolute;
+	left: 20px;
+	top: 51px;
+	background: url(../images/logo.png) 0 0 no-repeat;
+}
+
+#logo img {
+	width: 298px;
+	height: 63px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#topnav {
+	width: 500px;
+	height: 40px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #9a9a9a;
+	font: 11px/40px Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+#topnav a.inloggen {
+	color: #FF9900;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+#topnav a.uitloggen {
+	color: #990000;
+	font-weight: bold;
+}
+
+#topnav em {
+	font-style: normal;
+	margin-right: 4px;
+	color: #666;
+}
+
+#topnav a {
+	color: #9a9a9a;
+	font: 11px/40px Arial, Helvetica, sans-serif;
+	padding: 0 6px;
+}
+
+#kledingrek {
+	width: 245px;
+	height: 70px;
+	position: absolute;
+	right: 14px;
+	top: 63px;
+	background: url(../images/template/bg_kledingrek.jpg) no-repeat;
+}
+
+#kledingrek h1 {
+	margin: 16px 0 0 20px;
+}
+
+#kledingrek p {
+	color: #4a4a4a;
+	font: 11px/18px Arial, Helvetica, sans-serif;
+	margin: 8px 0 0 20px;
+}
+
+#sses1 .search {
+	width: 204px;
+	height: 28px;
+	right: 39px;
+	top: 11px;
+	background: url(../images/bg_input.jpg) 0 -28px no-repeat;
+	float: right;
+	margin-top: 4px;
+}
+
+#sses1 .search .input {
+	vertical-align: top;
+	width: 147px;
+	height: 18px;
+	position: relative;
+	margin: 5px 0 0 10px;
+	background: #fff;
+	border: 0;
+	color: #9a9a9a;
+	font: 11px/15px Arial, Helvetica, sans-serif;
+}
+
+#sses1 .search .searchbutton {
+	width: 33px;
+	height: 28px;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	border: 0;
+	background: url(../images/button_search.jpg) 0 0 no-repeat;
+}
+
+
+#content {
+	width: 940px;
+	height: auto;
+	position: relative;
+	float: left;
+	margin: 15px 0 0 20px;
+	background-color: #ffffff;
+}
+
+
+#footer {
+	position: relative;
+	height: 80px;
+	width: 940px;
+	margin: auto;
+	padding-left: 50px;
+	bottom:0;
+	z-index: 1;
+	background-color: #222;
+}
+
+#footer .copyright {
+	height: 21px;
+	position: relative;
+	float: left;
+	text-align: right;
+	margin-top: 40px;
+	margin-right: 50px;
+	color: #bfbfbf;
+	font: 11px/21px Arial, Helvetica, sans-serif;
+}
+
+#footer .copyright a {
+	color: #bfbfbf;
+	font: 11px/25px Arial, Helvetica, sans-serif;
+}
+
+/* LOSSE ELEMENTEN */
+
+div.selectbox-wrapper {
+	position: absolute;
+	width: 135px;
+	border: 1px solid #ccc;
+	background: #fff;
+	overflow: auto;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	z-index: 3;
+}
+
+div.selectbox-wrapper ul li {
+	list-style-type: none;
+	display: block;
+	height: 25px;
+	font: 11px/25px Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	text-indent: 5px;
+}
+
+div.selectbox-wrapper ul li:hover {
+	background: #dfdfdf;
+}
+
+.selectbox {
+	width: 125px; 
+	height: 19px;
+	font: 11px/12px Arial, Helvetica, sans-serif;
+	display: block;
+	background: url(../images/template/bg_select.gif);
+	cursor: pointer;
+	border: 0;
+	padding: 6px 0 0 5px;
+}
+
+select {
+	background: url(../images/template/bg_select.gif);
+}
+
+
+div.selectbox_kleuren {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 15px;
+	z-index: 5;
+}
+div.select_kleur {
+	position: relative;
+	width: 122px;
+	height: 22px;
+	padding: 3px 0 0 8px;
+	background: url(../images/template/bg_select.gif);
+	cursor: pointer;
+	z-index: 5;
+}
+div.kleurenkeuze {
+	position: absolute;
+	width: 107px;
+	padding: 13px 8px 8px 13px;
+	height: auto;
+	margin-top: -1px;
+	border: 1px solid #ccc;
+	background: #fff;
+	z-index: 25;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+.kleurenkeuze .kleur,
+.gekozenkleuren .kleur {
+	position: relative;
+	float: left;
+	border: 1px solid #ccc;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 1px;
+}
+.kleurenkeuze .kleur {
+	cursor: pointer;
+}
+.kleurenkeuze .hover {
+	border: 1px solid #000;
+}
+.kleur .kleur_bg, .kleur .kleur_bg_details {
+	position: relative;
+	float: left;
+	width: 18px;
+	height: 18px;
+}
+.kleurenkeuze .nomargin {
+	margin-right: 0px;
+}
+.gekozenkleuren {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.gekozenkleuren .gekozenkleur {
+	position: relative;
+	float: left;
+	width: 100%;
+	margin-bottom: 5px;
+}
+.gekozenkleuren .kleurtitel {
+	position: relative;
+	float: left;
+	font-weight: bold;
+	height: 20px;
+	line-height: 20px;
+	color: #999;
+	margin-left: 5px;
+	overflow: hidden;
+}
+
+.gekozenkleuren .verwijderkleur {
+	position: relative;
+	float: right;
+	margin: 3px 0px 0px 0px;
+	cursor: pointer;
+}
+
+.product {
+	width: 162px;
+	height: 331px;
+	position: relative;
+	float: left;
+	margin: 30px 50px 30px 50px;
+	background: url(../images/bg_product.jpg) 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.product.right {
+	margin: 0 0 10px 0;
+}
+
+.product .foto {
+	width: 152px;
+	height: 167px;
+	position: relative;
+	float: left;
+	margin: 5px 0 5px 5px;
+	overflow: hidden;
+	display: table;
+}
+
+.product .foto .center {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.product .titel {
+	width: 132px;
+	height: 48px;
+	position: relative;
+	float: left;
+	margin: 20px 0 15px 20px;
+	overflow: hidden;
+	font: normal 14px/22px Arial, Helvetica, sans-serif;
+	color: #2d2d2d;
+}
+
+.product .merk {
+	width: 132px;
+	height: 25px;
+	position: relative;
+	float: left;
+	margin: 0 0 10px 20px;
+	overflow: hidden;
+	font: normal 11px/15px Arial, Helvetica, sans-serif;
+	color: #777;
+}
+
+.product .prijs {
+	width: 132px;
+	height: 18px;
+	position: relative;
+	float: left;
+	margin: 0 0 0 20px;
+	font: bold 18px/18px Arial, Helvetica, sans-serif;
+	color: #2d2d2d;
+}
+
+.product .gaverder {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: url(../images/button_gaverder.jpg) 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.product .hover {
+	background: url(../images/template/button_gaverder.jpg) -28px 0 no-repeat;
+}
+
+
+/* geen resultaten */
+
+.noresult {
+	margin-left: 25px;
+}
+
+table {
+	margin : 0px auto;
+}
+
+
+	table.data {
+		overflow:hidden;
+		border:1px solid #d3d3d3;
+		background:#fefefe;
+		width:70%;
+		margin:5% auto 0;
+		-moz-border-radius:5px; /* FF1+ */
+		-webkit-border-radius:5px; /* Saf3-4 */
+		border-radius:5px;
+		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	}
+	
+	table.data th,table.data td {padding:18px 28px 18px; text-align:center; }
+	
+	table.data th {padding-top:22px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
+	
+	table.data td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+	
+	table.data tr.odd-row td {background:#f6f6f6;}
+	
+	table.data td.first, th.first {text-align:left}
+	
+	table.data td.last {border-right:none;}
+
+form td {
+	font-size: 17px;
+	padding: 10px;
+}
+
+#login {
+	margin: 50px auto;
+	width: 400px;
+}
+
+#login h2 {
+	background-color: #f95252;
+	-webkit-border-radius: 20px 20px 0 0;
+	-moz-border-radius: 20px 20px 0 0;
+	border-radius: 20px 20px 0 0;
+	color: #fff;
+	font-size: 28px;
+	padding: 20px 26px;
+}
+
+#login h2 span[class*="fontawesome-"] {
+	margin-right: 14px;
+}
+
+#login fieldset {
+	background-color: #fff;
+	-webkit-border-radius: 0 0 20px 20px;
+	-moz-border-radius: 0 0 20px 20px;
+	border-radius: 0 0 20px 20px;
+	padding: 20px 26px;
+}
+
+#login fieldset p {
+	color: #777;
+	margin-bottom: 14px;
+}
+
+#login fieldset p:last-child {
+	margin-bottom: 0;
+}
+
+#login fieldset input {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#login fieldset input[type="text"], #login fieldset input[type="password"] {
+	background-color: #eee;
+	color: #777;
+	padding: 4px 10px;
+	width: 328px;
+}
+
+#login fieldset input[type="submit"] {
+	background-color: #33cc77;
+	color: #fff;
+	display: block;
+	margin: 0 auto;
+	padding: 4px 0;
+	width: 100px;
+}
+
+#login fieldset input[type="submit"]:hover {
+	background-color: #28ad63;
+}
+
+ #accountForm td {
+ 	text-align: left;
+ }
+ 
+  #orderForm td {
+ 	text-align: left;
+ }
+ 
+ #errorContainer li {
+ 	color: #FF0000 !important;
+ }

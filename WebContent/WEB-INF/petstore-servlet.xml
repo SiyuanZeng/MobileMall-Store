@@ -1,0 +1,191 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<!-- <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd"> -->
+
+<!--
+  - DispatcherServlet application context for the Spring web MVC
+  - implementation of JPetStore's web tier.
+  - Controller mapping
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+
+	<!-- ========================= VIEW DEFINITIONS ========================= -->
+	<context:component-scan base-package="com.mindtree.mcse.mobilemall.web" />
+	<mvc:annotation-driven />
+ 	 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/spring/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+
+	<!-- ========================= DEFINITIONS OF PUBLIC CONTROLLERS ========================= -->
+
+	<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+	
+	<bean name="/shop/addItemToCart.do" class="com.mindtree.mcse.mobilemall.web.AddItemToCartController">
+		<property name="itemService" ref="itemService"/>
+	</bean>
+
+	<bean name="/shop/checkout.do" class="com.mindtree.mcse.mobilemall.web.ViewCartController">
+		<property name="successView" value="Checkout"/>
+	</bean>
+
+	<bean name="/shop/index.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="index"/>
+	</bean>
+
+	<bean name="/shop/newAccount.do" class="com.mindtree.mcse.mobilemall.web.AccountFormController">
+		<property name="accountService" ref="accountService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="validator" ref="accountValidator"/>
+		<property name="successView" value="index"/>
+	</bean>
+
+	<bean name="/shop/removeItemFromCart.do" class="com.mindtree.mcse.mobilemall.web.RemoveItemFromCartController"/>
+
+	<bean name="/shop/signoff.do" class="com.mindtree.mcse.mobilemall.web.SignoffController"/>
+
+	<bean name="/shop/searchProducts.do" class="com.mindtree.mcse.mobilemall.web.SearchProductsController">
+		<property name="productService" ref="productService"/>
+	</bean>
+
+	<bean name="/shop/signon.do" class="com.mindtree.mcse.mobilemall.web.SignonController">
+		<property name="accountService" ref="accountService"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+
+	<bean name="/shop/signonForm.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="SignonForm"/>
+	</bean>
+
+	<bean name="/shop/updateCartQuantities.do" class="com.mindtree.mcse.mobilemall.web.UpdateCartQuantitiesController"/>
+
+	<bean name="/shop/viewCart.do" class="com.mindtree.mcse.mobilemall.web.ViewCartController">
+		<property name="successView" value="Cart"/>
+	</bean>
+
+	<bean name="/shop/viewCategory.do" class="com.mindtree.mcse.mobilemall.web.ViewCategoryController">
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+
+	<bean name="/shop/viewItem.do" class="com.mindtree.mcse.mobilemall.web.ViewItemController">
+		<property name="itemService" ref="itemService"/>
+	</bean>
+
+	<bean name="/shop/addReview.do" class="com.mindtree.mcse.mobilemall.web.AddReviewController">
+		<property name="itemService" ref="itemService"/>
+		<property name="itemAndReviewService" ref="itemAndReviewService"/>
+	</bean>
+    
+
+<!-- 	<bean name="/shop/viewReview.do" class="com.mindtree.mcse.mobilemall.web.ViewReviewController"> -->
+<!-- 		<property name="itemService" ref="itemTwoService"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean name="/shop/viewReview.do" class="com.mindtree.mcse.mobilemall.web.ViewReviewController"> -->
+<!-- 		<property name="itemAndReviewService" ref="itemAndReviewService"/> -->
+<!-- 	</bean> -->
+
+	<bean name="/shop/viewProduct.do" class="com.mindtree.mcse.mobilemall.web.ViewProductController">
+		<property name="itemService" ref="itemService"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+
+	<bean name="/admin/signon.do" class="com.mindtree.mcse.mobilemall.web.AdminSignonController">
+		<property name="formView" value="AdminSignonForm" />
+		<property name="successView" value="ListAllOrders" />
+		<property name="accountService" ref="accountService"/>
+		<property name="productService" ref="productService"/>
+		<property name="validator">
+			<bean class="com.mindtree.mcse.mobilemall.web.validators.SignonValidator" />
+		</property>
+	</bean>
+	
+    <bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddRev1iewController" >
+		<property name="itemService" ref="itemService" />
+		<property name="formView" value="ValidatorReview" />
+		<property name="successView" value="Review" />
+		<property name="validator" ref="reviewValidator"/>
+    </bean>
+
+    <bean name="reviewValidator" class="com.mindtree.mcse.mobilemall.web.validators.ReviewValidator" />
+    
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+
+	<bean id="secureHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="signonInterceptor"/>
+			</list>
+		</property>
+		<property name="urlMap">
+			<map>
+				<entry key="/shop/editAccount.do" value-ref="secure_editAccount"/>
+				<entry key="/shop/listOrders.do" value-ref="secure_listOrders"/>
+				<entry key="/shop/newOrder.do" value-ref="secure_newOrder"/>
+				<entry key="/shop/viewOrder.do" value-ref="secure_viewOrder"/>
+				<entry key="/admin/listAllOrders.do" value-ref="secure_listAllOrders"/>
+				<entry key="/admin/listAllUsers.do" value-ref="secure_listAllUsers"/>
+				<entry key="/admin/viewOrder.do" value-ref="secure_adminViewOrder"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="signonInterceptor" class="com.mindtree.mcse.mobilemall.web.SignonInterceptor"/>
+
+	<bean id="secure_editAccount" class="com.mindtree.mcse.mobilemall.web.AccountFormController">
+		<property name="accountService" ref="accountService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="validator" ref="accountValidator"/>
+		<property name="successView" value="index"/>
+	</bean>
+
+	<bean id="secure_listOrders" class="com.mindtree.mcse.mobilemall.web.ListOrdersController">
+		<property name="orderService" ref="orderService"/>
+	</bean>
+
+	<bean id="secure_newOrder" class="com.mindtree.mcse.mobilemall.web.OrderFormController">
+		<property name="accountService" ref="accountService"/>
+		<property name="orderService" ref="orderService"/>
+		<property name="validator" ref="orderValidator"/>
+		<property name="itemService" ref="itemService"/>
+	</bean>
+
+<!-- 	<bean id="secure_newOrder" class="com.mindtree.mcse.mobilemall.web.ReviewController"> -->
+<!-- 		<property name="accountService" ref="accountService"/> -->
+<!-- 		<property name="orderService" ref="orderService"/> -->
+<!-- 		<property name="validator" ref="orderValidator"/> -->
+<!-- 		<property name="itemService" ref="itemService"/> -->
+<!-- 	</bean> -->
+
+	<bean id="secure_viewOrder" class="com.mindtree.mcse.mobilemall.web.ViewOrderController">
+		<property name="orderService" ref="orderService"/>
+	</bean>
+	
+	<bean id="secure_adminViewOrder" class="com.mindtree.mcse.mobilemall.web.AdminViewOrderController">
+		<property name="orderService" ref="orderService"/>
+	</bean>
+
+	<bean id="secure_listAllOrders" class="com.mindtree.mcse.mobilemall.web.ListAllOrdersController">
+		<property name="orderService" ref="orderService"/>
+	</bean>
+	
+	<bean id="secure_listAllUsers" class="com.mindtree.mcse.mobilemall.web.ListAllRegisteredUsersController">
+		<property name="accountService" ref="accountService"/>
+	</bean>
+</beans>

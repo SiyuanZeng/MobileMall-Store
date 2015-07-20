@@ -39,6 +39,8 @@ $('#reviewJQButton').click(function() {
 	$("#reviewModal").dialog('open');
 });
 
+
+//Test button
 $('#test').click(function() {
 	alert("test hibernate annotation");
 	 $.ajax({
@@ -46,6 +48,21 @@ $('#test').click(function() {
 	        async: false,
 	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
 	        data: $("#item").serialize(),
+	        success: function (data) {
+				$('#review-table').html(data);
+	        }
+	    });
+});
+
+//Test button
+$("form#hReview").submit(function(e) {
+	e.preventDefault();
+	alert($("form#hReview").serializeObject());
+	 $.ajax({
+	        type: "POST",
+	        async: false,
+	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
+	        data: $("form#hReview").serialize(),
 	        success: function (data) {
 				$('#review-table').html(data);
 	        }

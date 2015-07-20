@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" %>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"    uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,8 @@
 <script type="text/javascript" src="<c:url value="/js/menu.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/review.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/validate-review-form.js"/>"></script>
+<!-- fix ajax post call -->
+<script type="text/javascript" src="<c:url value="/js/jquery.serialize-object.js"/>"></script>
 </head>
 <body>
 <div id="container">

@@ -17,11 +17,11 @@ public class ReviewValidator implements Validator {
 	}
 
 	public void validate(Object obj, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required.id", "id is required.");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required.id", "id is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required.name", "name is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "itemId", "required.itemId", "ItemId is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required.title", "Title is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "timeStamp", "required.timeStamp", "TimeStamp is required.");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "timeStamp", "required.timeStamp", "TimeStamp is required.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "required.description", "Description is required.");
 	}
 }		

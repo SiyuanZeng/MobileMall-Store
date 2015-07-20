@@ -115,9 +115,9 @@
 		</property>
 	</bean>
 	
-    <bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddRev1iewController" >
+    <bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController" >
 		<property name="itemService" ref="itemService" />
-		<property name="formView" value="ValidatorReview" />
+		<property name="formView" value="ValidatorItem" />
 		<property name="successView" value="Review" />
 		<property name="validator" ref="reviewValidator"/>
     </bean>

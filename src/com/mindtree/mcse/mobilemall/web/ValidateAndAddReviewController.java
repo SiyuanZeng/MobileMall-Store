@@ -32,6 +32,7 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	public ValidateAndAddReviewController(){
 		setCommandClass(HReview.class);
 		setCommandName("hReview");
+		setSessionForm(true);
 	}
 	
 	@Override
@@ -39,31 +40,16 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 		// Get Item and populate
 		return new HReview();
 	}
-	/* Used to get item with review and return to ValidatorWithItem.jsp
+	
 	@Override
-	protected Object formBackingObject(HttpServletRequest request)
-			throws Exception {
-		// Get Item and populate
-		String itemId = request.getParameter("itemId");
-		System.out.println("form backing Object HItem");
-		HItem hItem = this.itemService.getHItem(itemId);
-		System.out.println("After form backing Object HItem");
-		Map model = new HashMap();
-		model.put("item", hItem);
-		model.put("product", hItem.getHProduct());
-		return new ModelAndView("ValidatorItem", model);
-	}
-*/	
-	@Override
-	public ModelAndView onSubmit(HttpServletRequest request,
-			HttpServletResponse response, Object command, BindException errors)
-			throws Exception {
-		HReview review = new HReview("0", request.getParameter("itemId"), request.getParameter("name"), new Date(), request.getParameter("title"), request.getParameter("description"));
+	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
+		HReview review = (HReview)command;
 		itemService.addReviewHibernateAnnotation(review);
-		Item item = this.itemService.getItem(request.getParameter("itemId"));
+		HItem hItem = this.itemService.getHItem(review.getItemId());
 		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yy");	
+		System.out.println(hItem);
 		String userInfo = "<table>";
-		for(Review rev: item.getReviews()){
+		for(HReview rev: hItem.gethReviews()){
 			userInfo += "<tr>"
 							+"<td>"
 								+ "<div class='review-name'>" + rev.getName()+ "</div>"
@@ -79,5 +65,15 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 		ModelAndView modelAndView = new ModelAndView("Review");
         modelAndView.addObject("review", userInfo);
         return modelAndView;
+	}
+	
+	@Override
+	protected Map referenceData(HttpServletRequest request) throws Exception {
+		Map referenceData = new HashMap();
+		String itemId = request.getParameter("itemId");
+		HItem hItem = this.itemService.getHItem(itemId);
+		referenceData.put("product", hItem.getHProduct());
+		referenceData.put("item", hItem);
+		return referenceData;
 	}
 }

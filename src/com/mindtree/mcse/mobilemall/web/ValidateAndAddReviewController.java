@@ -1,24 +1,23 @@
 package com.mindtree.mcse.mobilemall.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-import com.mindtree.mcse.mobilemall.domain.Item;
-import com.mindtree.mcse.mobilemall.domain.Review;
 import com.mindtree.mcse.mobilemall.domain.hibernateannotation.HItem;
 import com.mindtree.mcse.mobilemall.domain.hibernateannotation.HReview;
 import com.mindtree.mcse.mobilemall.service.ItemService;
 
 public class ValidateAndAddReviewController extends SimpleFormController{
+	private Logger logger = Logger.getLogger(ValidateAndAddReviewController.class);
 	private ItemService itemService;
 	
 	public ItemService getItemService() {
@@ -69,6 +68,7 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	
 	@Override
 	protected Map referenceData(HttpServletRequest request) throws Exception {
+		logger.info("Siyuan Zeng");
 		Map referenceData = new HashMap();
 		String itemId = request.getParameter("itemId");
 		HItem hItem = this.itemService.getHItem(itemId);

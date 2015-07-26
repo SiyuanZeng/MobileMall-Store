@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.xml.ws.WebServiceException;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.mindtree.mcse.mobilemall.dao.ItemDao;
 import com.mindtree.mcse.mobilemall.domain.Item;
@@ -15,10 +17,11 @@ import com.mindtree.mcse.mobilemall.event.GetHItemEvent;
 import com.mindtree.mcse.mobilemall.event.GetItemEvent;
 import com.mindtree.mcse.mobilemall.event.InventoryCheckEvent;
 import com.mindtree.mcse.mobilemall.service.exception.ItemNotFoundException;
+import com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController;
 import com.mindtree.mcse.mobilemall.ws.InventoryWS;
 
 public class ItemService {
-
+	private Logger logger = Logger.getLogger(ItemService.class);
 	private ItemDao itemDao;
 	private InventoryWS invService;
 	Gson gson = new Gson();
@@ -70,7 +73,7 @@ public class ItemService {
 		event.setReview(json);
 		int result = -1;
 		result = invService.addReview(event);
-		System.out.println("WS Returned for " + result);
+		logger.debug("WS Returned for " + result);
 		if (-1 != result) {
 			return result;
 		} else {
@@ -84,7 +87,7 @@ public class ItemService {
 		event.sethReview(json);
 		int result = -1;
 		invService.addReviewHibernateAnnotation(event);
-		System.out.println("WS Returned for " + result);
+		logger.debug("WS Returned for " + result);
 //		if (-1 != result) {
 //			return result;
 //		} else {
@@ -102,11 +105,10 @@ public class ItemService {
 		event.setQuantity(1);
 		try{
 			int inStock = invService.checkItemInventory(event);
-			System.out.println("WS Returned for " + itemId + "::" + inStock);
+			logger.debug("WS Returned for " + itemId + "::" + inStock);
 			return inStock;
 			
-		}
-		catch(Exception e){
+		} catch(Exception e){
 			throw new WebServiceException("Error in webservice call", e);
 		}
 		

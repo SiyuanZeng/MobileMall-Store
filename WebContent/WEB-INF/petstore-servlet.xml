@@ -119,11 +119,11 @@
 		<property name="itemService" ref="itemService" />
 		<property name="formView" value="ValidatorItem" />
 		<property name="successView" value="Review" />
-		<property name="validator" ref="reviewValidator"/>
+		<property name="validator">
+			<bean class="com.mindtree.mcse.mobilemall.web.validators.ReviewValidator" />
+		</property>
     </bean>
 
-    <bean name="reviewValidator" class="com.mindtree.mcse.mobilemall.web.validators.ReviewValidator" />
-    
 	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
 
 	<bean id="secureHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">

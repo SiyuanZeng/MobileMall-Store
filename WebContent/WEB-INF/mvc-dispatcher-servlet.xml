@@ -21,7 +21,7 @@
 	<!-- Register the Customer.properties -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="src/main/resources/Validator" />
+		<property name="basename" value="Validator" />
 	</bean>
 
 	<bean

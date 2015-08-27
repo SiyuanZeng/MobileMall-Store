@@ -30,6 +30,7 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	}
 
 	public ValidateAndAddReviewController(){
+		logger.debug("ValidateAndAddReviewController, set command class ************************************* ");
 		setCommandClass(HReview.class);
 		setCommandName("hReview");
 		setSessionForm(true);
@@ -37,11 +38,13 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	
 	@Override
 	protected Object formBackingObject(HttpServletRequest request){
+		logger.debug("formBackingObject() method ************************************* ");
 		return new HReview();
 	}
 	
 	@Override
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) {
+		logger.debug("onSubmit() method ************************************* ");
 		ModelAndView modelAndView = new ModelAndView("Review");
 		
 		try {
@@ -51,8 +54,13 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 			SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yy");	
 			System.out.println(hItem);
 			String userInfo = "<table>";
+			int i = 0;
 			for(HReview rev: hItem.gethReviews()){
+				i++;
 				userInfo += "<tr>"
+								+"<td>"
+									+ "<div class='review-name'>" + i + "</div>"
+								+"<td>"
 								+"<td>"
 									+ "<div class='review-name'>" + rev.getName()+ "</div>"
 									+ "<div class='review-time'>" + sdf.format(rev.getTimeStamp())+ "</div>"
@@ -73,6 +81,7 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	
 	@Override
 	protected Map referenceData(HttpServletRequest request) {
+		logger.debug("referenceData() method ************************************* ");
 		Map referenceData = new HashMap();
 		try {
 			logger.debug("Siyuan Zeng");

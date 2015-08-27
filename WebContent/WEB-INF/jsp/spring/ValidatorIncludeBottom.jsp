@@ -25,18 +25,18 @@ $("button, input:submit, input:button, a#jql, input:radio").button();
 //$('#reviewPost2').validate();
 
 //Make the form a modal dialog and create a button
-$('#reviewModal').dialog({
+var reviewDialog = {
 	modal: true,
 	autoOpen: false,
-	width: 800,
-	height: 450,
+	width: 1600,
+	height: 900,
 	title: "Enter your information",
 	buttons: {}
-});
+};
 
 //Show the modal form when clicked.
 $('#reviewJQButton').click(function() {
-	$("#reviewModal").dialog('open');
+	$("#reviewModal").dialog(reviewDialog).dialog('open');
 });
 
 
@@ -57,7 +57,6 @@ $('#test').click(function() {
 //Test button
 $("form#hReview").submit(function(e) {
 	e.preventDefault();
-	alert($("form#hReview").serializeObject());
 	 $.ajax({
 	        type: "POST",
 	        async: false,
@@ -65,6 +64,10 @@ $("form#hReview").submit(function(e) {
 	        data: $("form#hReview").serialize(),
 	        success: function (data) {
 				$('#review-table').html(data);
+	        	$("#reviewModal").dialog('close');
+	        	$(".ui-dialog").find("[]");
+	        	$("[aria-describedby='reviewModal']")
+// 				$("#reviewModal").dialog(reviewDialog).dialog('open');
 	        }
 	    });
 });

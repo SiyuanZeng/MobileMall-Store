@@ -4,6 +4,15 @@ body
 }
 .error
 {
-	color:red;
+	color:#ff0000;
 	font-family:verdana, Helvetica;
+}
+
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
 }

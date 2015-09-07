@@ -81,9 +81,9 @@ public class ItemService {
 		}
 	}
 	
-	public void addReviewHibernateAnnotation(HReview review) throws ItemNotFoundException {
+	public void addReviewHibernateAnnotation(HReview hReview) throws ItemNotFoundException {
 		AddReviewEvent event = new AddReviewEvent();
-		String json = gson.toJson(review);
+		String json = gson.toJson(hReview);
 		event.sethReview(json);
 		int result = -1;
 		invService.addReviewHibernateAnnotation(event);

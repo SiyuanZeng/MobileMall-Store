@@ -21,9 +21,11 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link rel="stylesheet" href="<c:url value="/css/item.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/review-pagination.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/validate-review-form.css"/>">
 <script type="text/javascript" src="<c:url value="/js/menu.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/review.js"/>"></script>
+<script type="text/javascript"  src="<c:url value="/js/review-pagination.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/validate-review-form.js"/>"></script>
 <!-- fix ajax post call -->
 <script type="text/javascript" src="<c:url value="/js/jquery.serialize-object.js"/>"></script>

@@ -12,8 +12,7 @@
 	</tr>
 </table>
 <p>
-<table align="center" class="data" cellspacing="2" cellpadding="3"
-	border="0" width="60%">
+<table align="center" class="data" cellspacing="2" cellpadding="3" border="0" width="60%">
 	<tr>
 		<td><c:out value="${product.description}" escapeXml="false" /></td>
 	</tr>
@@ -52,31 +51,22 @@
 </table>
 
 <!-- Show message -->
+<div id="main">
+	<ul id="holder" class="two-col-special review-table">
+		<c:forEach items="${item.hReviews}" var="review">
+		    <li>
+				<div class="review-name"> <c:out value="${review.name}" /> </div>
+				<div class="review-time"> <fmt:formatDate type="date" value="${review.timeStamp}" /> </div>
+		    </li>
+		    <li>
+				<div class="review-title"> <c:out value="${review.title}" /> </div>
+				<div class="review-description"> <c:out value="${review.description}" /> </div> <br />
+				<div class="review-helpful">0 of 0 users found this review helpful</div>
+		    </li>
+		</c:forEach>
+    </ul>
+</div>
 
-<table id="review-table">
-	<c:forEach items="${item.hReviews}" var="review">
-		<tr>
-			<td>
-				<div class="review-name">
-					<c:out value="${review.name}" />
-				</div>
-				<div class="review-time">
-					<fmt:formatDate type="date" value="${review.timeStamp}" />
-				</div>
-			</td>
-			<td>
-				<div class="review-title">
-					<c:out value="${review.title}" />
-				</div>
-				<div class="review-description">
-					<c:out value="${review.description}" />
-				</div> <br />
-				<div class="review-helpful">0 of 0 users found this review
-					helpful</div>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
 
 
 <%@ include file="ValidatorReview.jsp"%>

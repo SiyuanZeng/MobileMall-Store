@@ -1,0 +1,106 @@
+#main{
+	/* The main container div */
+	position:relative;
+	margin:50px auto;
+	width:810px;
+	padding:70px 25px 60px;
+
+	/* CSS3 rounded cornenrs */
+
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+}
+
+#holder{
+	/* The unordered list that is to be split into pages */
+	border-top:100px;
+	width:800px;
+	overflow:hidden;
+	position:relative;
+}
+
+.swControls{
+	position:absolute;
+	margin-top:10px;
+}
+
+.swPage{
+/* 	border-top: 40px solid #4E5355; */
+/* 	border-left: 40px solid #4E5355; */
+}
+
+a.swShowPage{
+	/* The links that initiate the page slide */
+	background-color:#444444;
+	float:left;
+	height:15px;
+	margin:4px 3px;
+	text-indent:-9999px;
+	width:15px;
+	/*border:1px solid #ccc;*/
+
+	/* CSS3 rounded corners */
+
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+}
+
+a.swShowPage:hover,
+a.swShowPage.active{
+	background-color:#2993dd;
+
+	/*	CSS3 inner shadow */
+
+	-moz-box-shadow:0 0 7px #1e435d inset;
+	/*-webkit-box-shadow:0 0 7px #1e435d inset;*/
+	box-shadow:0 0 7px #1e435d inset;
+}
+
+#holder li{
+	background-color:#F4F4F4;
+	list-style:none outside none;
+	padding:20px;
+	float:left;
+	border-style: solid;
+    border-width: 1px;
+    border-color: #4E5355;
+	/* Regular CSS3 box shadows (not inset): */
+
+}
+
+#holder,
+#holder li{
+	/* Applying rouded corners to both the holder and the holder lis */
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	height: 100px;
+	
+}
+
+.clear{
+	/* This class clears the floated elements */
+	clear:both;
+}
+
+
+/* 2 columns */
+.two-col-special {
+    margin: 0;
+    padding: 0;
+}
+
+.two-col-special li {
+    display: inline-block;
+    width: 44%;
+    padding: 0;
+    vertical-align: top;
+}
+.two-col-special li:before {
+    padding: 5px;
+    margin-right: 5px;
+    color: orange;
+    background-color: white;
+    display: inline-block;
+}

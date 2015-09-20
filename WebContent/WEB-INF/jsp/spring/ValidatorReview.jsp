@@ -1,5 +1,5 @@
 <!-- *********************** Review Form ********************** -->
-<div id="reviewModal">
+<div id="reviewModal" style="display:none">
 	<form:form commandName="hReview" method="POST">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table id="review" border="1" style="width: 100%;">

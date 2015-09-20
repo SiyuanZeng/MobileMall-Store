@@ -72,11 +72,7 @@ a.swShowPage.active{
 
 #holder,
 #holder li{
-	/* Applying rouded corners to both the holder and the holder lis */
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
 	height: 100px;
-	
 }
 
 .clear{

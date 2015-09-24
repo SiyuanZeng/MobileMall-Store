@@ -63,11 +63,9 @@ $("form#hReview").submit(function(e) {
 	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
 	        data: $("form#hReview").serialize(),
 	        success: function (data) {
-				$('#review-table').html(data);
+				$('#main').html(data);
 	        	$("#reviewModal").dialog('close');
-	        	$(".ui-dialog").find("[]");
-	        	$("[aria-describedby='reviewModal']")
-// 				$("#reviewModal").dialog(reviewDialog).dialog('open');
+	        	showReviewsInPages();
 	        }
 	    });
 });

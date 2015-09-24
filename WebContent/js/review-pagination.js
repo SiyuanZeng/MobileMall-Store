@@ -1,6 +1,21 @@
-﻿(function($){
+﻿function showReviewsInPages () {
+	/* The following code is executed once the DOM is loaded */
+	debugger;
+	// Calling the jQuery plugin and splitting the
+	// #holder UL into pages of 3 LIs each:
+	
+	$('#holder').sweetPages({perPage:20});
+	
+	// The default behaviour of the plugin is to insert the
+	// page links in the ul, but we need them in the main container:
+	
+	var controls = $('.swControls').detach();
+	controls.appendTo('#main');
+	
+}
 
-// Creating the sweetPages jQuery plugin:
+(function($){
+// Creating the sweetPages jQuery plugin and most importantly, add to the prototype, so that every element can use it. 
 $.fn.sweetPages = function(opts){
 
 	// If no options were passed, create an empty opts object
@@ -96,17 +111,5 @@ $.fn.sweetPages = function(opts){
 
 
 $(document).ready(function(){
-	/* The following code is executed once the DOM is loaded */
-
-	// Calling the jQuery plugin and splitting the
-	// #holder UL into pages of 3 LIs each:
-
-	$('#holder').sweetPages({perPage:20});
-
-	// The default behaviour of the plugin is to insert the
-	// page links in the ul, but we need them in the main container:
-
-	var controls = $('.swControls').detach();
-	controls.appendTo('#main');
-
+	showReviewsInPages();
 });

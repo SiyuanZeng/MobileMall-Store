@@ -52,27 +52,24 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 			itemService.addReviewHibernateAnnotation(review);
 			HItem hItem = this.itemService.getHItem(review.getItemId());
 			SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yy");	
-			System.out.println(hItem);
-			String userInfo = "<table>";
+			logger.debug("hItem ************************************* "+hItem);
+			StringBuffer sBuffer = new StringBuffer();
+		    sBuffer.append("<ul id='holder' class='two-col-special review-table'>");
 			int i = 0;
 			for(HReview rev: hItem.gethReviews()){
 				i++;
-				userInfo += "<tr>"
-								+"<td>"
-									+ "<div class='review-name'>" + i + "</div>"
-								+"<td>"
-								+"<td>"
-									+ "<div class='review-name'>" + rev.getName()+ "</div>"
-									+ "<div class='review-time'>" + sdf.format(rev.getTimeStamp())+ "</div>"
-								+"<td>"
-									+ "<div class='review-title'>" + rev.getTitle()+ "</div>"
-									+ "<div class='review-description'>" + rev.getDescription()+ "</div>"
-									+ "<div class='review-helpful'>0 of 0 users found this review helpful</div>"
-								+"</td>"
-						      + "</tr>";
+				sBuffer.append("<li>"
+								+ "<div class='review-name'>" + rev.getName()+ "</div>"
+								+ "<div class='review-time'>" + sdf.format(rev.getTimeStamp())+ "</div>"
+							+"</li>"
+							+"<li>"
+								+ "<div class='review-title'>" + rev.getTitle()+ "</div>"
+								+ "<div class='review-description'>" + rev.getDescription()+ "</div>"
+								+ "<div class='review-helpful'>0 of 0 users found this review helpful</div>"
+							+"</li>");
 			}
-			userInfo += "</table>";
-			modelAndView.addObject("review", userInfo);
+			sBuffer.append("</ul>");
+			modelAndView.addObject("review", sBuffer.toString());
 		} catch (ItemNotFoundException e) {
 			logger.error("IOEXception occured:", e);
 		}

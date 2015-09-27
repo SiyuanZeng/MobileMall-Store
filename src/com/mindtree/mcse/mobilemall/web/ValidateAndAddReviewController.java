@@ -51,23 +51,8 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 			HReview hReview = (HReview)command;
 			itemService.addReviewHibernateAnnotation(hReview);
 			HItem hItem = this.itemService.getHItem(hReview.getItemId());
-			SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yy");	
 			logger.debug("hItem ************************************* "+hItem);
-			StringBuffer sBuffer = new StringBuffer();
-		    sBuffer.append("<ul id='holder' class='two-col-special review-table'>");
-			for(HReview rev: hItem.gethReviews()){
-				sBuffer.append("<li>"
-								+ "<div class='review-name'>" + rev.getName()+ "</div>"
-								+ "<div class='review-time'>" + sdf.format(rev.getTimeStamp())+ "</div>"
-							+"</li>"
-							+"<li>"
-								+ "<div class='review-title'>" + rev.getTitle()+ "</div>"
-								+ "<div class='review-description'>" + rev.getDescription()+ "</div>"
-								+ "<div class='review-helpful'>0 of 0 users found this review helpful</div>"
-							+"</li>");
-			}
-			sBuffer.append("</ul>");
-			modelAndView.addObject("review", sBuffer.toString());
+			modelAndView.addObject("item", hItem);
 		} catch (ItemNotFoundException e) {
 			logger.error("IOEXception occured:", e);
 		}

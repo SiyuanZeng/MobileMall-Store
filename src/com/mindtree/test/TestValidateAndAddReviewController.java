@@ -1,15 +1,19 @@
 package com.mindtree.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +30,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mindtree.mcse.mobilemall.domain.Item;
 import com.mindtree.mcse.mobilemall.domain.Review;
+import com.mindtree.mcse.mobilemall.domain.hibernateannotation.HItem;
+import com.mindtree.mcse.mobilemall.domain.hibernateannotation.HProduct;
+import com.mindtree.mcse.mobilemall.domain.hibernateannotation.HReview;
 import com.mindtree.mcse.mobilemall.service.ItemAndReviewService;
 import com.mindtree.mcse.mobilemall.service.ItemService;
 import com.mindtree.mcse.mobilemall.web.AddReviewController;
@@ -42,7 +49,6 @@ public class TestValidateAndAddReviewController {
 	@Mock HttpServletResponse response;
 	@Mock ItemService itemService;
 	@Mock ItemAndReviewService itemAndReviewService;
-	@Mock Object command; 
 	@Mock BindException errors;
 	@Before
 	public void setup(){
@@ -53,25 +59,33 @@ public class TestValidateAndAddReviewController {
 	@Test
 	public void testGetUsersListException() {
 		try {
-			Item item = new Item();
-			Review review = new Review("1", "EST-5", "Nokia", new Date(), "Title", "Description");
-			Set<Review> reviews = new HashSet<Review>();
-			reviews.add(review);
-			item.setReviews(reviews);
+			HItem hItem = new HItem();
+			HReview hReview = new HReview("1", "EST-5", "Nokia", new Date(), "Title", "Description");
+			SortedSet<HReview> reviews = new TreeSet<HReview>();
+			reviews.add(hReview);
+			hItem.sethReviews(reviews);
 			
 			when(request.getParameter("title")).thenReturn("Review Title");
 			when(request.getParameter("description")).thenReturn("Description");
 			when(request.getParameter("name")).thenReturn("Name");
 			when(request.getParameter("itemId")).thenReturn("EST-5");
-			when(itemService.addReview(any(Review.class))).thenReturn(1);
-			when(itemAndReviewService.getItem("EST-5")).thenReturn(item);
+			
+			//Mock void method
+			doNothing().when(itemService).addReviewHibernateAnnotation(any(HReview.class));
+			when(itemService.getHItem("EST-5")).thenReturn(hItem);
 
 			
-			ModelAndView model = controller.onSubmit(request, response, command, errors);
+			ModelAndView model = controller.onSubmit(request, response, hReview, errors);
 			String html = (String)model.getModelMap().get("review");
-			assertEquals(html,"<table><tr><td><div class='review-name'>Nokia</div><div class='review-time'>Jun 02 15</div><td><div class='review-title'>Title</div><div class='review-description'>Description</div><div class='review-helpful'>0 of 0 users found this review helpful</div></td></tr></table>");
+			assertThat(html,is(equalTo("<ul id='holder' class='two-col-special review-table'><li><div class='review-name'>Nokia</div><div class='review-time'>Sep 27 15</div></li><li><div class='review-title'>Title</div><div class='review-description'>Description</div><div class='review-helpful'>0 of 0 users found this review helpful</div></li></ul>")));
 		} catch (Exception e) {
 			fail();
 		}
+	}
+	
+	
+	@Test
+	public void testReferenceData() {
+	// Protected method can not be tested. 
 	}
 }

@@ -7,13 +7,6 @@ import java.io.Serializable;
 
 public class Category implements Serializable {
 
-	public Category(String categoryId, String name, String description) {
-		super();
-		this.categoryId = categoryId;
-		this.name = name;
-		this.description = description;
-	}
-
 	private static final long serialVersionUID = 8265957051193499588L;
 	private String categoryId;
 	private String name;
@@ -22,6 +15,15 @@ public class Category implements Serializable {
 	public Category() {
 	}
 	
+	public Category(String categoryId, String name, String description) {
+		super();
+		this.categoryId = categoryId;
+		this.name = name;
+		this.description = description;
+	}
+
+
+
 	public String getCategoryId() { 
 		return categoryId; 
 	}

@@ -48,16 +48,14 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 		ModelAndView modelAndView = new ModelAndView("Review");
 		
 		try {
-			HReview review = (HReview)command;
-			itemService.addReviewHibernateAnnotation(review);
-			HItem hItem = this.itemService.getHItem(review.getItemId());
+			HReview hReview = (HReview)command;
+			itemService.addReviewHibernateAnnotation(hReview);
+			HItem hItem = this.itemService.getHItem(hReview.getItemId());
 			SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yy");	
 			logger.debug("hItem ************************************* "+hItem);
 			StringBuffer sBuffer = new StringBuffer();
 		    sBuffer.append("<ul id='holder' class='two-col-special review-table'>");
-			int i = 0;
 			for(HReview rev: hItem.gethReviews()){
-				i++;
 				sBuffer.append("<li>"
 								+ "<div class='review-name'>" + rev.getName()+ "</div>"
 								+ "<div class='review-time'>" + sdf.format(rev.getTimeStamp())+ "</div>"

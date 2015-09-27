@@ -23,6 +23,22 @@ public class HProduct implements Serializable {
 	
 	public HProduct() {
 	}
+	
+	
+	
+	public HProduct(String productId, String categoryId, String name,
+			String descriptionWithImage, String description, String image) {
+		super();
+		this.productId = productId;
+		this.categoryId = categoryId;
+		this.name = name;
+		this.descriptionWithImage = descriptionWithImage;
+		this.description = description;
+		this.image = image;
+	}
+
+
+
 	@Id
 	@Column(name = "productid")
 	public String getProductId() { 

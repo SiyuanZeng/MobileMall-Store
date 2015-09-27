@@ -1,9 +1,9 @@
 package com.mindtree.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -61,12 +61,12 @@ public class TestItemAndReviewService {
 			when(request.getParameter("name")).thenReturn("Name");
 			when(request.getParameter("itemId")).thenReturn("EST-5");
 			when(itemService.addReview(any(Review.class))).thenReturn(1);
-			when(itemAndReviewService.getItem("EST-5")).thenReturn(item);
+			when(itemService.getItem("EST-5")).thenReturn(item);
 
 			
 			ModelAndView model = addReviewController.handleRequest(request, response);
 			String html = (String)model.getModelMap().get("review");
-			assertEquals(html,"<table><tr><td><div class='review-name'>Nokia</div><div class='review-time'>Jun 02 15</div><td><div class='review-title'>Title</div><div class='review-description'>Description</div><div class='review-helpful'>0 of 0 users found this review helpful</div></td></tr></table>");
+			assertThat(html,is("<table><tr><td><div class='review-name'>Nokia</div><div class='review-time'>Sep 27 15</div><td><div class='review-title'>Title</div><div class='review-description'>Description</div><div class='review-helpful'>0 of 0 users found this review helpful</div></td></tr></table>"));
 		} catch (Exception e) {
 			fail();
 		}

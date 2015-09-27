@@ -1,17 +1,24 @@
 package com.mindtree.test;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mindtree.mcse.mobilemall.dao.CategoryDao;
 import com.mindtree.mcse.mobilemall.domain.Category;
+import com.mindtree.mcse.mobilemall.event.InventoryCheckEvent;
 import com.mindtree.mcse.mobilemall.service.CategoryService;
 import com.mindtree.mcse.mobilemall.service.exception.CategoryNotFoundException;
 
@@ -28,6 +35,15 @@ public class TestCategoryService {
 	
 	@Autowired
 	CategoryDao categoryDao;
+	
+	@Mock
+	CategoryDao categoryDaoMock;
+	
+	@Before
+	public void setup(){
+		MockitoAnnotations.initMocks(this); 
+		categoryService.setCategoryDao(categoryDaoMock);
+	}
 
 	@Test
 	public void testGetCategoryListException() {
@@ -52,20 +68,12 @@ public class TestCategoryService {
 	}
 	
 	@Test
-	public void testGetCategory(){
-		categoryDao.save(new Category("testCategory", "test", "this is for testing only"));
-		try {
-			Category category = categoryService.getCategory("testCategory");
-			if(category.getName().equals("test")){
-				assertTrue(true);
-			} else {
-				fail("Category not found");
-			}
-			
-		} catch (CategoryNotFoundException e) {
-			fail("Exception not Expected");
-		}
-		
+	public void testGetCategory() throws CategoryNotFoundException{
+		Category category = new Category("HTC", "HTCName", "");
+//		when(invService.checkItemInventory(any(InventoryCheckEvent.class))).thenReturn(10);
+		when(categoryDaoMock.getCategory("HTC")).thenReturn(category);
+		Category categoryOutput = categoryService.getCategory("HTC");
+		assertThat("HTCName", is(categoryOutput.getName()));
 	}
 
 }

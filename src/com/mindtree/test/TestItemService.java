@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mindtree.mcse.mobilemall.dao.ItemDao;
 import com.mindtree.mcse.mobilemall.domain.Item;
 import com.mindtree.mcse.mobilemall.domain.Review;
+import com.mindtree.mcse.mobilemall.event.AddReviewEvent;
 import com.mindtree.mcse.mobilemall.event.InventoryCheckEvent;
 import com.mindtree.mcse.mobilemall.service.ItemService;
 import com.mindtree.mcse.mobilemall.service.exception.ItemNotFoundException;
@@ -24,23 +25,23 @@ import static org.mockito.Mockito.*;
 public class TestItemService {
 	
 	ItemDao itemDao;
-	InventoryWS invWs;
+	InventoryWS invService;
 	ItemService itemService;
 	
 	@Before
 	public void init(){
 		itemDao = mock(ItemDao.class);
-		invWs = mock(InventoryWS.class);
+		invService = mock(InventoryWS.class);
 		itemService = new ItemService();
-		itemService.setInvService(invWs);
+		itemService.setInvService(invService);
 		itemService.setItemDao(itemDao);
 	}
 
 	@Test
 	public void testIsItemInStock() {
-		when(invWs.checkItemInventory(any(InventoryCheckEvent.class))).thenReturn(10);
+		when(invService.checkItemInventory(any(InventoryCheckEvent.class))).thenReturn(10);
 		int result = itemService.isItemInStock("abc");
-		verify(invWs).checkItemInventory(any(InventoryCheckEvent.class));
+		verify(invService).checkItemInventory(any(InventoryCheckEvent.class));
 		assertEquals(10, result);
 	} 
 	
@@ -73,10 +74,10 @@ public class TestItemService {
 	public void testAddReview(){
 		Review review = new Review();
 		review.setItemId("myitem");
-		when(itemDao.addReview(any(Review.class))).thenReturn(1);
+		when(invService.addReview(any(AddReviewEvent.class))).thenReturn(1);
 		try {
 			int result = (int)itemService.addReview(review);
-			verify(itemDao).addReview(review);
+			verify(invService).addReview(any(AddReviewEvent.class));
 			assertEquals(1, result);
 		} catch (ItemNotFoundException e) {
 			e.printStackTrace();
@@ -87,7 +88,7 @@ public class TestItemService {
 	public void testaddReviewWithItemNotFoundException() throws ItemNotFoundException{
 		Review review = new Review();
 		review.setItemId("myitem");
-		when(itemDao.addReview(any(Review.class))).thenReturn(-1);
+		when(invService.addReview(any(AddReviewEvent.class))).thenReturn(-1);
 		itemService.addReview(review);
 	}
 

@@ -34,7 +34,7 @@
             $.ajax({
     	        type: "POST",
     	        async: false,
-    	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
+    	        url: 'http://localhost:8810/MobileMall-Store/shop/viewItem.do',
                 data: JSON.stringify(t.serializeObject()),
                 dataType: 'json',
                 processData: false,

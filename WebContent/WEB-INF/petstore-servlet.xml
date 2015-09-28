@@ -82,7 +82,7 @@
 		<property name="productService" ref="productService"/>
 	</bean>
 
-	<bean name="/shop/viewItem.do" class="com.mindtree.mcse.mobilemall.web.ViewItemController">
+	<bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ViewItemController">
 		<property name="itemService" ref="itemService"/>
 	</bean>
 
@@ -115,7 +115,7 @@
 		</property>
 	</bean>
 	
-    <bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController" >
+    <bean name="/shop/viewItem.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController" >
 		<property name="itemService" ref="itemService" />
 		<property name="formView" value="ValidatorItem" />
 		<property name="successView" value="Review" />

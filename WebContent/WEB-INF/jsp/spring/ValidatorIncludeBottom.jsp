@@ -46,7 +46,7 @@ $('#test').click(function() {
 	 $.ajax({
 	        type: "POST",
 	        async: false,
-	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
+	        url: 'http://localhost:8810/MobileMall-Store/shop/viewItem.do',
 	        data: $("#item").serialize(),
 	        success: function (data) {
 				$('#review-table').html(data);
@@ -60,7 +60,7 @@ $("form#hReview").submit(function(e) {
 	 $.ajax({
 	        type: "POST",
 	        async: false,
-	        url: 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
+	        url: 'http://localhost:8810/MobileMall-Store/shop/viewItem.do',
 	        data: $("form#hReview").serialize(),
 	        success: function (data) {
 				$('#main').html(data);

@@ -8,10 +8,7 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-
-
 	<!-- ========================= GENERAL DEFINITIONS ========================= -->
-
 	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
 	<!-- (in this case, mail and JDBC related properties) -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -23,7 +20,6 @@
 	</bean>
 
 	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
-
 	<!-- Generic validator for Account objects, to be used for example by the Spring web tier -->
 	<bean id="accountValidator" class="com.mindtree.mcse.mobilemall.web.validators.AccountValidator"/>
 

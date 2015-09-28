@@ -3,7 +3,6 @@
 
 <beans>
 	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
-
 	<!-- Local Apache Commons DBCP DataSource that refers to a combined database -->
 	<!-- The placeholders are resolved from jdbc.properties through -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -41,7 +40,6 @@
 			</list>
 		</property>
 	</bean>
-	
 	
 	<!-- Spring Data Access Exception Translator Defintion -->
 	<bean id="jdbcExceptionTranslator" class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator"> 

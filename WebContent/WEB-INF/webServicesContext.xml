@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
             http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
            http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd">
-      <!--External service  -->     	
+    <!--External service  -->     	
     <bean id="inventoryService" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
      	<property name="serviceInterface" value="com.mindtree.mcse.mobilemall.ws.InventoryWS"/>
      	<property name="wsdlDocumentUrl" value="http://localhost:8910/MobileMall_Inventory/WS/InventoryService?wsdl"/>

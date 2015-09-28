@@ -17,7 +17,6 @@
 	http://www.springframework.org/schema/mvc 
 	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-
 	<!-- ========================= VIEW DEFINITIONS ========================= -->
 	<context:component-scan base-package="com.mindtree.mcse.mobilemall.web" />
 	<mvc:annotation-driven />
@@ -28,11 +27,8 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
-
 	<!-- ========================= DEFINITIONS OF PUBLIC CONTROLLERS ========================= -->
-
 	<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
-
 	
 	<bean name="/shop/addItemToCart.do" class="com.mindtree.mcse.mobilemall.web.AddItemToCartController">
 		<property name="itemService" ref="itemService"/>
@@ -91,15 +87,6 @@
 		<property name="itemAndReviewService" ref="itemAndReviewService"/>
 	</bean>
     
-
-<!-- 	<bean name="/shop/viewReview.do" class="com.mindtree.mcse.mobilemall.web.ViewReviewController"> -->
-<!-- 		<property name="itemService" ref="itemTwoService"/> -->
-<!-- 	</bean> -->
-
-<!-- 	<bean name="/shop/viewReview.do" class="com.mindtree.mcse.mobilemall.web.ViewReviewController"> -->
-<!-- 		<property name="itemAndReviewService" ref="itemAndReviewService"/> -->
-<!-- 	</bean> -->
-
 	<bean name="/shop/viewProduct.do" class="com.mindtree.mcse.mobilemall.web.ViewProductController">
 		<property name="itemService" ref="itemService"/>
 		<property name="productService" ref="productService"/>
@@ -125,7 +112,6 @@
     </bean>
 
 	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
-
 	<bean id="secureHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="interceptors">
 			<list>
@@ -165,13 +151,6 @@
 		<property name="validator" ref="orderValidator"/>
 		<property name="itemService" ref="itemService"/>
 	</bean>
-
-<!-- 	<bean id="secure_newOrder" class="com.mindtree.mcse.mobilemall.web.ReviewController"> -->
-<!-- 		<property name="accountService" ref="accountService"/> -->
-<!-- 		<property name="orderService" ref="orderService"/> -->
-<!-- 		<property name="validator" ref="orderValidator"/> -->
-<!-- 		<property name="itemService" ref="itemService"/> -->
-<!-- 	</bean> -->
 
 	<bean id="secure_viewOrder" class="com.mindtree.mcse.mobilemall.web.ViewOrderController">
 		<property name="orderService" ref="orderService"/>

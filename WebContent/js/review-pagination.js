@@ -1,6 +1,5 @@
 ﻿function showReviewsInPages () {
 	/* The following code is executed once the DOM is loaded */
-	debugger;
 	// Calling the jQuery plugin and splitting the
 	// #holder UL into pages of 3 LIs each:
 	
@@ -39,8 +38,8 @@ $.fn.sweetPages = function(opts){
 	// Calculating the total number of pages:
 	var pagesNumber = Math.ceil(li.length/resultsPerPage);
 
-	// If the pages are less than two, do nothing:
-	if(pagesNumber<2) return this;
+	// If the pages are less than two, show all in one page:
+	if(pagesNumber<2) pagesNumber = 1;
 
 	// Creating the controls div:
 	var swControls = $('<div class="swControls">');

@@ -52,7 +52,6 @@ $(function() {
 		});
 	});
 
-	//Test button
 	$("form#hReview").submit(function(e) {
 		e.preventDefault();
 		$.ajax({

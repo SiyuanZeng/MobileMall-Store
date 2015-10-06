@@ -26,7 +26,7 @@
           }
         }, 
         submitHandler: function(form) {
-        	$("form#hReview").submit();
+        	form.submit();
           }
       });	
 });

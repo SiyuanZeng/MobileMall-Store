@@ -57,12 +57,22 @@ $(function() {
 		$.ajax({
 			type : "POST",
 			async : false,
-			url : 'http://localhost:8810/MobileMall-Store/shop/viewItem.do',
-			data : $("form#hReview").serialize(),
+			url : 'http://localhost:8810/MobileMall-Store/shop/validateAndAddReview.do',
+			// How do I use jQuery's form.serialize but exclude empty fields, without it, it will passing comma to the controller and cause the validator to fail the empty value test. 
+			data : $(this).find(":input").filter(function () { return $.trim(this.value).length > 0 }).serialize(),
 			success : function(data) {
-				$('#main').html(data);
-				$("#reviewModal").dialog('close');
-				showReviewsInPages();
+				var result = $.trim(data);
+				if (data !== "Error") {
+					$('#main').html(data);
+					$("#reviewModal").dialog('close');
+					showReviewsInPages();
+				} else {
+					$("#reviewModal").dialog('close');
+					$("#reviewModal").dialog(reviewDialog).dialog('open');
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("some error");
 			}
 		});
 	});

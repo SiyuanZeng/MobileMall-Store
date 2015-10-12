@@ -62,16 +62,14 @@ $(function() {
 			data : $(this).find(":input").filter(function () { return $.trim(this.value).length > 0 }).serialize(),
 			success : function(data) {
 				var result = $.trim(data);
-				if (data.indexOf("DOCTYPE") < 0){
+				if ($(".error", data)[0]){
+					$("#reviewModal").dialog('destroy');
+					$('#reviewModal').replaceWith(data);
+					$("#reviewModal").dialog(reviewDialog).dialog('open');
+				} else {
 					$('#main').html(data);
 					$("#reviewModal").dialog('destroy');
 					showReviewsInPages();
-				} else {
-					var elements = $(data);
-					var found = $('#reviewModal', elements);
-					$("#reviewModal").dialog('destroy');
-					$('#reviewModal').replaceWith(found);
-					$("#reviewModal").dialog(reviewDialog).dialog('open');
 				}
 			}
 		});

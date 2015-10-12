@@ -78,10 +78,6 @@
 		<property name="productService" ref="productService"/>
 	</bean>
 
-	<bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ViewItemController">
-		<property name="itemService" ref="itemService"/>
-	</bean>
-
 	<bean name="/shop/addReview.do" class="com.mindtree.mcse.mobilemall.web.AddReviewController">
 		<property name="itemService" ref="itemService"/>
 		<property name="itemAndReviewService" ref="itemAndReviewService"/>
@@ -102,7 +98,18 @@
 		</property>
 	</bean>
 	
+	<!-- 	Controller bean has all these properties, the validator is plugin, plugin is for spring.  -->
     <bean name="/shop/viewItem.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController" >
+		<property name="itemService" ref="itemService" />
+		<property name="formView" value="ValidatorItem" />
+		<property name="successView" value="Review" />
+		<property name="validator">
+			<bean class="com.mindtree.mcse.mobilemall.web.validators.ReviewValidator" />
+		</property>
+    </bean>
+    
+	<!-- 	Controller bean has all these properties, the validator is plugin, plugin is for spring.  -->
+    <bean name="/shop/validateAndAddReview.do" class="com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController" >
 		<property name="itemService" ref="itemService" />
 		<property name="formView" value="ValidatorItem" />
 		<property name="successView" value="Review" />

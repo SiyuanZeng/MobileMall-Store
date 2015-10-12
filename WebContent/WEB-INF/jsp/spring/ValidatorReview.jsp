@@ -9,7 +9,7 @@
 				</td>
 				<td>
 					<div><form:input type="text" name="title" id="title" path="title"/></div>
-					<div><form:errors path="title" cssClass="error" /></div>
+					<div><form:errors path="title" cssClass="error" > </form:errors></div>
 					<div><br />(Maximum	20 words)</div>
 				</td>
 			</tr>
@@ -19,16 +19,16 @@
 					retailers, pricing, personal information, any profane,
 					inflammatory or copyrighted comments, or any copied content.<br /></div>
 					<div><form:textarea id="description" path="description" name="description" cols="60" rows="4"/></div>
-					<div><form:errors path="description" cssClass="error" /></div>
+					<div><form:errors path="description" cssClass="error" ></form:errors></div>
 				</td>
 			</tr>
 			<tr>
 				<td><label for='name'>Name:</label><br></td>
 				<td>
 					<div><form:input type="text" name="name" id="name" path="name"/></div>
-					<div><form:errors path="name" cssClass="error" /></div>
+					<div><form:errors path="name" cssClass="error" ></form:errors></div>
 					<div><form:input type="hidden" name="itemId" id="itemId" path="itemId" value="${item.itemId}"/></div>
-					<div><form:errors path="itemId" cssClass="error" /></div>
+					<div><form:errors path="itemId" cssClass="error" ></form:errors></div>
 					<div><br/>(Maximum 20 words)</div>
 				</td>
 			</tr>

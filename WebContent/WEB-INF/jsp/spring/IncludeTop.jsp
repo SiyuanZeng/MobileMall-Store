@@ -27,6 +27,7 @@
 <script type="text/javascript"  src="<c:url value="/js/review.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/review-pagination.js"/>"></script>
 <script type="text/javascript"  src="<c:url value="/js/validate-review-form.js"/>"></script>
+<script type="text/javascript"  src="<c:url value="/js/validate-validator-review-form.js"/>"></script>
 <!-- fix ajax post call -->
 <script type="text/javascript" src="<c:url value="/js/jquery.serialize-object.js"/>"></script>
 </head>

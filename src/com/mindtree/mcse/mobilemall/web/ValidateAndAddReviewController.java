@@ -45,14 +45,21 @@ public class ValidateAndAddReviewController extends SimpleFormController{
 	@Override
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) {
 		logger.debug("onSubmit() method ************************************* ");
-		ModelAndView modelAndView = new ModelAndView("Review");
+		logger.debug("ValidateAndAddReviewController BindException: " + errors);
+		ModelAndView modelAndView = null;
+		
 		
 		try {
-			HReview hReview = (HReview)command;
-			itemService.addReviewHibernateAnnotation(hReview);
-			HItem hItem = this.itemService.getHItem(hReview.getItemId());
-			logger.debug("hItem ************************************* "+hItem);
-			modelAndView.addObject("item", hItem);
+			if (errors.hasErrors()) {
+				modelAndView = new ModelAndView("ErrorAddingReview", "message", "Error");
+			} else {
+				modelAndView = new ModelAndView("Review");
+				HReview hReview = (HReview)command;
+				itemService.addReviewHibernateAnnotation(hReview);
+				HItem hItem = this.itemService.getHItem(hReview.getItemId());
+				logger.debug("hItem ************************************* "+hItem);
+				modelAndView.addObject("item", hItem);
+			}
 		} catch (ItemNotFoundException e) {
 			logger.error("IOEXception occured:", e);
 		}

@@ -17,7 +17,6 @@ import com.mindtree.mcse.mobilemall.event.GetHItemEvent;
 import com.mindtree.mcse.mobilemall.event.GetItemEvent;
 import com.mindtree.mcse.mobilemall.event.InventoryCheckEvent;
 import com.mindtree.mcse.mobilemall.service.exception.ItemNotFoundException;
-import com.mindtree.mcse.mobilemall.web.ValidateAndAddReviewController;
 import com.mindtree.mcse.mobilemall.ws.InventoryWS;
 
 public class ItemService {
@@ -88,17 +87,8 @@ public class ItemService {
 		int result = -1;
 		invService.addReviewHibernateAnnotation(event);
 		logger.debug("WS Returned for " + result);
-//		if (-1 != result) {
-//			return result;
-//		} else {
-//			throw new ItemNotFoundException("Review is not saved.");
-//		}
 	}
 
-//	public boolean isItemInStock(String itemId) {
-//		return this.itemDao.isItemInStock(itemId);
-//	}
-	
 	public int isItemInStock(String itemId) throws WebServiceException {
 		InventoryCheckEvent event = new InventoryCheckEvent();
 		event.setItemId(itemId);

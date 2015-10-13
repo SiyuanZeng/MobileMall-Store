@@ -39,23 +39,6 @@ $('#reviewJQButton').click(function() {
 	$("#reviewModal").dialog('open');
 });
 
-$('#test').click(function() {
-	alert("test hibernate annotation");
-	 $.ajax({
-	        type: "POST",
-	        async: false,
-	        url: 'http://localhost:8810/MobileMall-Store/shop/test.do',
-	        data: {
-	            title : "Test hibernate annotation",
-	            name : "Name",
-	            description: "desc",
-	            itemId: "EST-5"
-	        },
-	        success: function (data) {
-				$('#review-table').html(data);
-	        }
-	    });
-});
 
 </script>
 

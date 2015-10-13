@@ -47,7 +47,6 @@
 			<a href="<c:url value="/shop/addItemToCart.do"><c:param name="workingItemId" value="${item.itemId}"/></c:url>">
 				<img border="0" src="../images/button_add_to_cart.gif" />
 			</a>
-			<input type="button" value="Test Hibernate Annotation" id="test" />
 			<input type="button" value="Write Review" id="reviewJQButton" />
 			<input id="itemId" value="${item.itemId}" type="hidden"/>
 		</td>

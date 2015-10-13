@@ -37,20 +37,7 @@ $(function() {
 	$('#reviewJQButton').click(function() {
 		$("#reviewModal").dialog(reviewDialog).dialog('open');
 	});
-
-	//Test button
-	$('#test').click(function() {
-		alert("test hibernate annotation");
-		$.ajax({
-			type : "POST",
-			async : false,
-			url : 'http://localhost:8810/MobileMall-Store/shop/viewItem.do',
-			data : $("#item").serialize(),
-			success : function(data) {
-				$('#review-table').html(data);
-			}
-		});
-	});
+	
 
 	$("form#hReview").submit(function(e) {
 		e.preventDefault();

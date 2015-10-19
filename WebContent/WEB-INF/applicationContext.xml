@@ -8,9 +8,31 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- Enable AspectJ style of Spring AOP -->
+	<aop:aspectj-autoproxy/>
+
+	<!-- Spring AOP XML Configuration -->
+	<!-- Caused by: java.lang.IllegalStateException: Cannot convert value of 
+		type [com.sun.proxy.$Proxy14 implementing org.springframework.orm.hibernate3.HibernateOperat 
+		ions,org.springframework.beans.factory.InitializingBean,org.springframework.beans.factory.BeanFactoryAware,org.springframework.aop.SpringProxy,org.springframewo 
+		rk.aop.framework.Advised] to required type [org.springframework.orm.hibernate3.HibernateTemplate] 
+		for property 'hibernateTemplate': no matching editors or conve rsion strategy 
+		found -->
+	<!-- 如果在Spring配置文件中配置的事务是通过AOP标签实现的，那就在中增加proxy-target-class=”true”属性。就异常显示的信息可以看到，Spring在转换时，主要是将代理类转换成接口，反而不能转换成实际类。 -->
+	<aop:config>
+		<aop:aspect id="loggingAllGettersAspect" ref="loggingAllGettersAspect" order="1">
+			<aop:pointcut id="allGetters" expression="execution(* getHItem(*))"/>
+			<aop:around pointcut-ref="allGetters" method="logAllGettersAdvice"/>
+		</aop:aspect>
+	</aop:config>
+
+	<!-- Configure Aspect Beans, without this Aspects advices wont execute -->	
+	<bean name="loggingAllGettersAspect" class="com.mindtree.mcse.mobile.aspect.LoggingAllGettersAspect"/>
+	
 	<!-- ========================= GENERAL DEFINITIONS ========================= -->
 	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
 	<!-- (in this case, mail and JDBC related properties) -->
+	
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
@@ -53,5 +75,7 @@
 		<property name="itemDao" ref="itemDao"/>
 		<property name="orderDao" ref="orderDao"/>
 	</bean>
+
+
 
 </beans>
